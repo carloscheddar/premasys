@@ -1,1 +1,3 @@
 venv/
+lenv/
+settings_local.py
