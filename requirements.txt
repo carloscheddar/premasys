@@ -1,0 +1,9 @@
+Django==1.5.4
+South==0.8.2
+Werkzeug==0.9.4
+antiorm==1.1.1
+db==0.0.15
+django-extensions==1.2.2
+django-suit==0.2.5
+six==1.4.1
+wsgiref==0.1.2
