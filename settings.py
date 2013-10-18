@@ -1,4 +1,4 @@
-import os
+import os, sys
 # Django settings for premasys project.
 
 DEBUG = True
@@ -9,19 +9,19 @@ ADMINS = (
     )
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "./"))
-SITE_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-
 PROJECT_DIR = os.path.abspath(os.path.dirname(__file__))
-
 PROJECT_NAME = 'premasys'
 PROJECT_TITLE = 'Premasys'
+
+#Add the apps folder to the path
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
 
 MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(SITE_ROOT, '%s.sqlite' % PROJECT_NAME), # Or path to database file if using sqlite3.
+        'NAME': os.path.join(PROJECT_ROOT, '%s.sqlite' % PROJECT_NAME), # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': '',
         'PASSWORD': '',
@@ -111,10 +111,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'premasys.urls'
+ROOT_URLCONF = 'urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'premasys.wsgi.application'
+WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
