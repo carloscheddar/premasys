@@ -6,6 +6,8 @@ db==0.0.15
 dj-database-url==0.2.2
 dj-static==0.0.5
 django-extensions==1.2.2
+django-registration==1.0
+django-registration-defaults==0.4.3
 django-suit==0.2.5
 django-toolbelt==0.0.1
 gunicorn==18.0
