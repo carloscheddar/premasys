@@ -1,4 +1,6 @@
 import os, sys
+from registration_defaults.settings import *
+
 # Django settings for premasys project.
 
 ADMINS = (
@@ -127,16 +129,22 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'registration_defaults',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     'django.contrib.admindocs',
     'south',
     'django_extensions',
-    'reveal',
+    'reveal', #Home of the reveal.js library
+    'registration', #Library for user registration
+    'common',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+#Ammount of time a user will be registered
+ACCOUNT_ACTIVATION_DAYS = 7
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
