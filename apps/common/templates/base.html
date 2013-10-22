@@ -1,4 +1,13 @@
-<!doctype html>
+{% load staticfiles %}
+
+<script type="text/javascript" src="{% static "common/jquery-2.0.3.min.js" %}"></script>
+
+{% load bootstrap3 %}
+
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+
 <html>
     <head>
         <title>{% block title %}{% endblock %}</title>

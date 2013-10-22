@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'reveal', #Home of the reveal.js library
     'registration', #Library for user registration
     'common',
+    'bootstrap3',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
