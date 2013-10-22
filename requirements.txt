@@ -5,6 +5,7 @@ antiorm==1.1.1
 db==0.0.15
 dj-database-url==0.2.2
 dj-static==0.0.5
+django-bootstrap3==1.1.0
 django-extensions==1.2.2
 django-registration==1.0
 django-registration-defaults==0.4.3
