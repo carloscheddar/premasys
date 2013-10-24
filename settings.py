@@ -1,5 +1,5 @@
 import os, sys
-from registration_defaults.settings import *
+# from registration_defaults.settings import *
 
 # Django settings for premasys project.
 

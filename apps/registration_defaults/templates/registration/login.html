@@ -1,0 +1,39 @@
+{% extends "registration/registration_base.html" %}
+{% load widget_tweaks %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+  {% if form.errors %}
+
+    <p>Your username and password didn't match. Please try again.</p>
+
+  {% elif request.user.is_authenticated %}
+    <div class="container">
+      <h2>You're already logged in. Do you want to log out?</h2>
+      <a href="{% url 'auth_logout' %}">
+        <button type="submit" value="logout" class="btn btn-lg btn-primary btn-block">
+          Log Out
+        </button>
+      </a>
+    </div>
+
+  {% else %}
+
+  <body>
+      <div class="container">
+        <form method="post" action="{% url 'auth_login' %}" class="form-signin">{% csrf_token %}
+          <h2 class="form-signin-heading">Please sign in</h2>
+          {% render_field form.username placeholder=form.username.label class+="form-control" %}
+          {% render_field form.password placeholder=form.password.label class+="form-control" %}
+          <label class="checkbox">
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+          <input type="submit" value="login" class="btn btn-lg btn-primary btn-block"/>
+          <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+      </div>
+  </body>
+
+  {% endif %}
+
+{% endblock %}
