@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'registration', #Library for user registration
     'common',
     'bootstrap3',
+    'widget_tweaks',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
