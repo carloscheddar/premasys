@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class Lesson(models.Model):
+	username = models.CharField(max_length=50)
+	slide = models.TextField()
