@@ -31,8 +31,8 @@
   		{%verbatim%}
 	  		<div class="reveal">
     			<div class="slides">
-		        <section>
-			        <h2>{{slides}}</h2>
+		        <section ng-bind-html-unsafe="slides">
+			        <!-- This slide will be inserted from angular -->
 		        </section>
 		        <section>
 		           <section>Vertical Slide 1</section>
