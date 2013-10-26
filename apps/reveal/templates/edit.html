@@ -19,7 +19,8 @@
 		</script>
 	</head>
 
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+	<!-- Add angular.js 1.0.8 -->
+	<script type="text/javascript" src="{% static "common/angular.min.js" %}"></script>
 	<hr>
 	<div class="container">
 		<div class="row">
@@ -30,7 +31,9 @@
   		{%verbatim%}
 	  		<div class="reveal">
     			<div class="slides">
-		        <section>{{slides}}</section>
+		        <section>
+			        <h2>{{slides}}</h2>
+		        </section>
 		        <section>
 		           <section>Vertical Slide 1</section>
 		           <section>Vertical Slide 2</section>
@@ -62,16 +65,22 @@
 				{ src: "{% static "reveal/lib/js/classList.js" %}", condition: function() {
 					return !document.body.classList; } },
 
-				{ src: "{% static "reveal/plugin/markdown/marked.js" %}", condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+				{ src: "{% static "reveal/plugin/markdown/marked.js" %}", condition: function() {
+					return !!document.querySelector( '[data-markdown]' ); } },
 
 				{ src: "{% static "reveal/plugin/markdown/markdown.js" %}", condition: function() {
 					return !!document.querySelector( '[data-markdown]' ); } },
 
-				{ src: "{% static "reveal/plugin/highlight/highlight.js" %}", async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+				{ src: "{% static "reveal/plugin/highlight/highlight.js" %}",
+					async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
 
-				{ src: "{% static "reveal/plugin/zoom-js/zoom.js" %}", async: true, condition: function() { return !!document.body.classList; } },
+				{ src: "{% static "reveal/plugin/zoom-js/zoom.js" %}", async: true, condition: function() {
+					return !!document.body.classList; } },
 
-				{ src: "{% static "reveal/plugin/notes/notes.js" %}", async: true, condition: function() { return !!document.body.classList; } }
+				{ src: "{% static "reveal/plugin/notes/notes.js" %}", async: true, condition: function() {
+					return !!document.body.classList; } },
+
+        { src: "{% static "reveal/plugin/math/math.js" %}", async: true }
 			]
 		});
 

@@ -89,7 +89,16 @@
 							</a>
 						</section>
 					</section>
-
+					<section>
+						<h2>Math!</h2>
+						<p>
+							\begin{aligned}
+							\dot{x} & = \sigma(y-x) \\
+							\dot{y} & = \rho x - y - xz \\
+							\dot{z} & = -\beta z + xy
+							\end{aligned}
+						</p>
+					</section>
 					<section>
 						<h2>Slides</h2>
 						<p>
@@ -381,7 +390,9 @@
 
 						{ src: "{% static "reveal/plugin/zoom-js/zoom.js" %}", async: true, condition: function() { return !!document.body.classList; } },
 
-						{ src: "{% static "reveal/plugin/notes/notes.js" %}", async: true, condition: function() { return !!document.body.classList; } }
+						{ src: "{% static "reveal/plugin/notes/notes.js" %}", async: true, condition: function() { return !!document.body.classList; } },
+
+						{ src: "{% static "reveal/plugin/math/math.js" %}", async: true }
 					]
 				});
 
