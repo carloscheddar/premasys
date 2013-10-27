@@ -17,4 +17,6 @@ urlpatterns = patterns('',
     url(r'', include("common.urls")),
     url(r"^reveal/", include("reveal.urls")),
     url(r'^accounts/', include('registration.backends.default.urls')),
+    url(r'^user/', include("users.urls")),
+    
 )
