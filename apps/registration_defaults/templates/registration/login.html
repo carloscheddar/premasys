@@ -56,6 +56,10 @@
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
+    .error {
+      text-align: center;
+      color: red;
+    }
   </style>
 
 
@@ -63,7 +67,7 @@
       <div class="container">
         {% if form.errors %}
 
-          <h4 style="text-align:center">
+          <h4 class="error">
             Your username and password didn't match. Please try again.
           </h4>
 

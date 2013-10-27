@@ -51,15 +51,27 @@
       border-top-left-radius: 0;
       border-top-right-radius: 0;
     }
+    .error {
+    	color:red;
+    }
   </style>
 
-<div class="container">
-   <form method='post' action='' class="form-signin">{% csrf_token %}
-	   <h2 style="text-align:center" class="form-signin-heading">Register Here:</h2>
-      {% for f in form %}
-      	{% render_field f placeholder=f.label class+="form-control" %}
-      {% endfor %}
-      <input type="submit" value="Send activation email" class="btn btn-lg btn-primary btn-block" />
-    </form>
-</div >
+	{% if form.errors %}
+
+    <h4 class="error">
+    Error:
+			{{ form.errors }}
+    </h4>
+
+  {% endif %}
+
+	<div class="container">
+	  <form method='post' action='' class="form-signin">{% csrf_token %}
+		  <h2 style="text-align:center" class="form-signin-heading">Register Here:</h2>
+	    {% for f in form %}
+	      {% render_field f placeholder=f.label class+="form-control" %}
+	    {% endfor %}
+	    <input type="submit" value="Send activation email" class="btn btn-lg btn-primary btn-block" />
+	  </form>
+	</div >
 {% endblock %}
