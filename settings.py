@@ -146,7 +146,7 @@ INSTALLED_APPS = (
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 #Change the default login url
-LOGIN_REDIRECT_URL = '/user/'
+LOGIN_REDIRECT_URL = '/'
 
 #Ammount of time a user will be registered
 ACCOUNT_ACTIVATION_DAYS = 7
