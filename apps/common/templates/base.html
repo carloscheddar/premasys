@@ -27,7 +27,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Premasys</a>
+          <a class="navbar-brand" href="/">Djoodle</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -37,16 +37,19 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Another action</a></li>
-                <li><a href="#">Something else here</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Lectures</a></li>
+                <li><a href="#">Progress</a></li>
                 <li class="divider"></li>
-                <li class="dropdown-header">Nav header</li>
-                <li><a href="#">Separated link</a></li>
-                <li><a href="#">One more separated link</a></li>
+                <li class="dropdown-header">Support</li>
+                <li><a href="#">Report an error</a></li>
+                <li><a href="#">FAQ's</a></li>
               </ul>
             </li>
           </ul>
+
+	  <!-- Change this to a sign out button -->
           <a href="{% url 'auth_login' %}" class="navbar-form navbar-right">
             <button type="submit" value="login" class="btn btn-success">
             Sign in
@@ -57,15 +60,14 @@
     </div>
     {% if request.path != "/" %}
       <hr>
-
       {% block content %}{% endblock %}
 
     {% else %}
     <div class="jumbotron">
     <!-- Main jumbotron for a primary marketing message or call to action -->
       <div class="container">
-        <h1>Hello, world!</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+        <h1>Welcome to Djoodle</h1>
+        <p>A lesson creation suite to expand functionality to your course management system. Create lessons, evaluate students's progress... </p>
         <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
       </div>
     </div>
@@ -73,18 +75,18 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <h2>Content 1</h2>
+          <p>balh </p>
           <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <h2>Content 2</h2>
+          <p>blah </p>
           <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
        </div>
         <div class="col-lg-4">
-          <h2>Heading</h2>
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+          <h2>Content 2</h2>
+          <p>wrmasdf</p>
           <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
         </div>
       </div>
