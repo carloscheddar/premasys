@@ -129,7 +129,6 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration_defaults',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
@@ -139,11 +138,15 @@ INSTALLED_APPS = (
     'reveal', #Home of the reveal.js library
     'registration', #Library for user registration
     'common',
+    'users',
     'bootstrap3',
-    'widget_tweaks',
+    'widget_tweaks', #Library to add css to forms
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
+
+#Change the default login url
+LOGIN_REDIRECT_URL = '/profile/'
 
 #Ammount of time a user will be registered
 ACCOUNT_ACTIVATION_DAYS = 7

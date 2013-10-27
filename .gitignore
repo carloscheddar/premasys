@@ -4,3 +4,4 @@ settings_local.py
 /staticfiles/
 *.pyc
 *.sqlite
+.DS_Store
