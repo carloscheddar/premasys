@@ -1,5 +1,9 @@
 from django.db import models
+from registration.models import User
 
 class Lesson(models.Model):
-	username = models.CharField(max_length=50)
-	slide = models.TextField()
+	username = models.ForeignKey(User, null=True, blank=True)
+	slide = models.TextField(blank=True, null=True)
+
+	def __unicode__(self):
+		return u'%s'  % self.username

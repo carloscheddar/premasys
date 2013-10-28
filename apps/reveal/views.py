@@ -15,6 +15,7 @@ def Reveal(request):
 def Edit(request):
   return render_to_response("edit.html", RequestContext(request, {'title': 'Edit'}))
 
+<<<<<<< HEAD
 
 
 
@@ -44,3 +45,9 @@ def Get_Lesson(L_ID):
 
 	return lesson
 	
+=======
+def Save(request):
+	post = request.POST.keys()[0]
+	Lesson(username=request.user, slide=post).save()
+	return render_to_response("save.html", RequestContext(request,{'h': 'hello'}))
+>>>>>>> 18d1f9d7e5f5b37ddeda8ca1849a4651fe8556d5
