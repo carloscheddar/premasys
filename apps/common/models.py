@@ -6,7 +6,7 @@ class User(models.Model):
 	UserID = models.BigIntegerField(primary_key = True)
 	Username = models.CharField(max_length = 30)
 	email = models.EmailField(max_length=75)
-	perm = models.BooleanField(initial = false)
+	perm = models.BooleanField(default = False)
 	
 class Course(models.Model):
 	CourseName = models.CharField(max_length = 260, blank = False)
