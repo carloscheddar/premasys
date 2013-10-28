@@ -43,9 +43,12 @@
               Dropdown <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
+            {% if user.id != None %}
               <li>
                 <a href="{% url 'user_url' user.id %}">Profile</a>
               </li>
+            {% endif %}
+
               <li>
                 <a href="#about">About</a>
               </li>
