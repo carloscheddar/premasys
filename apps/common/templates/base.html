@@ -16,34 +16,7 @@
   <title>{% block title %}{% endblock title %}</title>
 </head>
 
-<<<<<<< HEAD
-    <body>
-      <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            <a class="navbar-brand" href="/">Djoodle</a>
-          </div>
-          <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Lesson</a></li>
-                  <li><a href="#">Progress</a></li>
-                  <li class="divider"></li>
-                  <li class="dropdown-header">Support</li>
-                  <li><a href="#">Report an error</a></li>
-                  <li><a href="#">FAQ's</a></li>
-                </ul>
-=======
+
 <body>
   <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="container">
@@ -74,7 +47,7 @@
             {% if user.id != None %}
               <li>
                 <a href="{% url 'user_url' user.id %}">Profile</a>
->>>>>>> 18d1f9d7e5f5b37ddeda8ca1849a4651fe8556d5
+
               </li>
             {% endif %}
 
@@ -115,38 +88,6 @@
   {% block content %}{% endblock %}
 
       {% else %}
-<<<<<<< HEAD
-      <div class="jumbotron">
-      <!-- Main jumbotron for a primary marketing message or call to action -->
-        <div class="container">
-          <h1>Welcome to Djoodle!</h1>
-          <p>We let you create lessons for your Course Management System for a course.</p>
-          <p><a class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-
-        </div>
-      </div>
-      <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
-          <div class="col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-          </div>
-          <div class="col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-         </div>
-          <div class="col-lg-4">
-            <h2>Heading</h2>
-            <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-            <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
-          </div>
-        </div>
-      </div> <!-- /container -->
-      {% endif %}
-=======
   <div class="jumbotron">
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="container">
@@ -154,8 +95,6 @@
       <p>
         We let you create lessons for your Course Management System for a course.
       </p>
->>>>>>> 18d1f9d7e5f5b37ddeda8ca1849a4651fe8556d5
-
       <p>
         <a class="btn btn-primary btn-lg">Learn more &raquo;</a>
       </p>
@@ -191,10 +130,7 @@
           <a class="btn btn-default" href="#">View details &raquo;</a>
         </p>
       </div>
-<<<<<<< HEAD
-  </body>
-</html>
-=======
+
     </div>
   </div>
   <!-- /container -->
@@ -206,5 +142,4 @@
     </footer>
   </div>
 </body>
-</html>
->>>>>>> 18d1f9d7e5f5b37ddeda8ca1849a4651fe8556d5
+</html>5

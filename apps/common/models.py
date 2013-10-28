@@ -5,17 +5,20 @@ from django.db import models
 class User(models.Model):
 	UserID = models.BigIntegerField(primary_key = True)
 	Username = models.CharField(max_length = 30)
-	email = models.EmailField(max_length=75)
-	perm = models.BooleanField(default = False)
+	
+	Email = models.EmailField(max_length=75)
 	
 class Course(models.Model):
 	CourseName = models.CharField(max_length = 260, blank = False)
 	CourseID = models.BigIntegerField(primary_key = True)
 	
+	Description = models.TextField()
+	
 class User_Course(models.Model):
-	Prof_CourID = models.BigIntegerField(primary_key = True)
 	UserID = models.ForeignKey('User')
 	CourseID = models.ForeignKey('Course')
+	
+	PermEdits = models.BooleanField(default = False)
 
 class Lessons(models.Model):
 	LessonID = models.BigIntegerField(primary_key = True)
@@ -29,4 +32,3 @@ class Slides(models.Model):
 	Number = models.BigIntegerField()
 	Data = models.TextField()
 	LessonID = models.ForeignKey('Lessons')
-	
