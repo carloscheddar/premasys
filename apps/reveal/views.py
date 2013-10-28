@@ -5,7 +5,7 @@ from reveal.models import Lesson
 from common.models import User
 from common.models import Course
 from common.models import User_Course
-from common.models import Lesson
+from common.models import Lessons
 from common.models import Slides
 
 
@@ -36,7 +36,7 @@ def Save_Lesson(lesson):
 #
 
 def Get_Slides(L_ID):
-	return sorted(Slides.objects.all().filter(LessonID = L_ID), key = lamda item: item["Number"])
+	return sorted(Slides.objects.all().filter(LessonID = L_ID), key =lambda item: item['Number'])
 
 def Get_Lesson(L_ID):
 	lesson = Lesson.objects.filter(LessonID = L_ID)
