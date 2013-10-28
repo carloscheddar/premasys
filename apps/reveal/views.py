@@ -26,17 +26,21 @@ def Edit(request):
 ###----------------------------###
 
 def Save_Lesson(lesson):
-	ID = lesson["ID"]
-	Lesson(LessionId = ID).save()
-	for slide in lesson["slides"]:
-		Slides(LessonID = ID, Number = slide["num"], Data = slide["data"]).save()
+	ID = lesson["LessonID"]
+	#Lesson(LessionId = ID).save()
+	for slide in lesson["Slides"]:
+		Slides(LessonID = ID, Number = slide["Number"], Data = slide["Data"]).save()
 
 
 	return lesson
 #
 
 def Get_Slides(L_ID):
-	slides=[]
+	return sorted(Slides.objects.all().filter(LessonID = L_ID), key = lamda item: item["Number"])
 
-	return slides
+def Get_Lesson(L_ID):
+	lesson = Lesson.objects.filter(LessonID = L_ID)
+	lesson["Slides"] = Get_Slides(L_ID)
+
+	return lesson
 	
