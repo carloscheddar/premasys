@@ -20,10 +20,12 @@ class User_Course(models.Model):
 class Lessons(models.Model):
 	LessonID = models.BigIntegerField(primary_key = True)
 	CourseID = models.ForeignKey('Course')
-	UserID = models.CharField(max_length = 20, blank = False)	
+	#UserID = models.CharField(max_length = 20, blank = False)	
+	
+	Title = models.TextField()
 
 class Slides(models.Model):
-	SlideID = models.BigIntegerField()
+	SlideID = models.BigIntegerField(primary_key = True)
 	Number = models.BigIntegerField()
 	Data = models.TextField()
 	LessonID = models.ForeignKey('Lessons')
