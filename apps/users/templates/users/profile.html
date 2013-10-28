@@ -7,7 +7,9 @@
 		<h1>Welcome to {{ user_page }} user page </h1>
 	{% endif %}
 	{% if lesson %}
-		{{ lesson }}
+		{% for slide in lesson %}
+			{{ slide.slide }}
+		{% endfor %}
 	{% endif %}
 </div>
 {% endblock content %}
