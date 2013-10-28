@@ -11,5 +11,5 @@ def Edit(request):
 def Save(request):
 	print request.POST
 	print request.user
-	Lesson(username=request.user, slide=request.POST)
+	Lesson(username=request.user, slide=request.POST).save()
 	return render_to_response("save.html", RequestContext(request,{'h': 'hello'}))
