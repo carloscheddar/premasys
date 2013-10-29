@@ -10,7 +10,6 @@ def Profile(request, user_id):
 		lesson = Lesson.objects.filter(username=user)
 	except:
 		lesson = ''
-	print lesson
 	return render_to_response("users/profile.html", RequestContext(request, {
 		'title': 'Profile',
 		'user_page' : user,
