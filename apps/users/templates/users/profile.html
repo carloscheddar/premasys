@@ -10,11 +10,13 @@
   {% if lesson %}
     {% for slide in lesson %}
   <li>
-    <a href="{% url 'Show View' slide.id %}">
-      Lesson {{ slide.id }} <i class="glyphicon glyphicon-play-circle"></i>
+    Lesson {{ slide.id }}
+    <a href="{% url 'Show View' slide.id %}"> <i class="glyphicon glyphicon-play-circle"></i>
+    </a>
+    <a href="{% url 'Edit View' slide.id %}"> <i class="glyphicon glyphicon-pencil"></i>
     </a>
   </li>
-  {% endfor %}
+    {% endfor %}
   {% endif %}
 </div>
 {% endblock content %}
