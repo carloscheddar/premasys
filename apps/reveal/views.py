@@ -31,6 +31,7 @@ def Save(request):
 
 #SUMBIT LESSON TO DB
 
+#
 def Save_Lesson(lesson):
 	ID = lesson["LessonID"]
 	#Lesson(LessionId = ID).save()
@@ -43,23 +44,52 @@ def Save_Lesson(lesson):
 	return lesson
 
 
-#FIND LESSON AND SLIDES FUNCTIONS
+####GET FUNCTIONS####
 
-def Get_Slides(L_ID):
-	return sorted(Slides.objects.all().filter(LessonID = L_ID), key =lambda item: item['Number'])
-#Revisar para usar Content() model para conseguir la info
-#slide["Content"] = Content.Objects.all().filter(SlideID = slide["SlideID"]
+#
+def Get_All_Answers(Q_ID):
+	answers = Answers.objects.all().filter(QuestionID = Q_ID)
+	return answers
 
+#
+def Get_Question(C_ID):
+	question = Question.objects.filter(ContentID = C_ID)
+	question["answers"]= Get_All_Answers(question["QuestionID"])#access question correctly
 
+	return question
+
+#
+def Get_All_Content(S_ID):
+	content = sorted(Content.objects.all().filter(SlideID = S_ID), key = lambda item: item["Number"])
+
+	return content
+
+#
+def Get_All_Slides(L_ID):
+	slides = sorted(Slides.objects.all().filter(LessonID = L_ID), key =lambda item: item['Number'])
+
+	for sl in slides:
+		slides["Content"] = Get_All_Content(sl["S_ID"])
+	
+	return slides
+
+#
+def Get_Subject(L_ID):
+	subject = Subject.objects.all().filter(LessonID_ L_ID)
+	return subject
+
+#
 def Get_Lesson(L_ID):
 	lesson = Lesson.objects.filter(LessonID = L_ID)
-	lesson["Slides"] = Get_Slides(L_ID)
+	lesson["Slides"] = Get_All_Slides(L_ID)
+	lesson["Subject"] = Get_Subject(L_ID)
 
 	return lesson
 
 	
 ### VIEW A COURSE OR LESSON FUNCTIONS
 
+#
 def Permit_View(C_ID, U_ID):
 	Check_Course = User_Course.objects.filter(CourseID = C_ID, UserID = U_ID)
 	if():#check if relation user to course exists
@@ -67,6 +97,7 @@ def Permit_View(C_ID, U_ID):
 	else:#there is no relation
 		return (False, False)
 
+#
 def Permit_Edit(C_ID, U_ID):
 	Check_Course = User_Course.objects.filter(CourseID = C_ID, UserID = U_ID)
 	if(): #check if relation user to course exists

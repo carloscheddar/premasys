@@ -11,8 +11,12 @@ class User(models.Model):
 	
 #Table containing the existing courses and it's data
 class Course(models.Model):
-	CourseName = models.CharField(max_length = 260, blank = False)
 	CourseID = models.BigIntegerField(primary_key = True)
+	CourseName = models.CharField(max_length = 260, blank = False)
+	
+
+	#CourseCode
+	#CourseTerm (date)
 	
 	Description = models.TextField()
 
@@ -49,6 +53,7 @@ class Content(models.Model):
 	ContentID = models.BigIntegetField(primary_key = True)
 	Type = models.CharField(max_length = 10)
        	Data = models.TextField()
+	Number = models.BigIntegerField()
 
 	SlideID = models.ForeignKey('Slides')
 
@@ -56,23 +61,21 @@ class Content(models.Model):
 #Table containing the different tags
 #Need to specify if tags are selected by course, lecture or slide
 #Temporarily has been set to lesson
-class Tag_Content:
-	TagID = models.BigIntegerField(primary_key = True)
+class Subject(models.Model):
+	SubjectID = models.BigIntegerField(primary_key = True)
 	Type = models.CharField(max_length = 10)
 
 	LessonID = models.ForeignKey('Lesson')
 
 #
-class Quiz(models.Model):
-	QuizID = models.BigIntegerField(primary_key = True)
+class Question(models.Model):
+	QuestionID = models.BigIntegerField(primary_key = True)
 	
-	#either create a table with questions or set an attribute containing it.
-	
-	TagID = models.ForeignKey('Tag_Content')
+	Text = models.TextField()	
+
+	SubjectID = models.ForeignKey('Subject')
 	ContentID = models.ForeignKey('Content')
 
-#For discussion, is there a need for questions or will multiple 'quiz' do?
-#class Questions(models.Model)
 
 #
 class Answers(models.Model):
@@ -80,4 +83,4 @@ class Answers(models.Model):
 	Correct = models.BooleanField(default = False)
 	Text = models.TextField()
 	
-	QuizID = model.ForeignKey('Quiz')
+	QuestionID = model.ForeignKey('Question')
