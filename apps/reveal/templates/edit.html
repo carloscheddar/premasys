@@ -17,8 +17,9 @@
       document.write( "<link rel=\"stylesheet\" href=\"{{ STATIC_URL }}" + u + "\" type=\"text/css\" media=\"print\">" );</script>
 </head>
 
-<!-- Add angular.js 1.2.0 -->
+<!-- Add angular.js 1.2.2 -->
 <script type="text/javascript" src="{% static "common/angular.min.js" %}"></script>
+<!-- TODO: Make this static instead of link -->
 <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular-sanitize.min.js"></script>
 <hr>
 <div ng-controller="Ctrl" class="container">
@@ -61,11 +62,10 @@
     // }
 
     angular.module('reveal', ['ngSanitize'])
-
-    .controller('Ctrl', ['$scope', function Ctrl($scope) {
-      $scope.slideshow =
-        '{{ slide.slide|escapejs }}';
-    }]);
+      .controller('Ctrl', ['$scope', function Ctrl($scope) {
+        $scope.slideshow =
+          '{{ slide.slide|escapejs }}';
+      }]);
 
     function save(extracted) {
       $.ajax({
