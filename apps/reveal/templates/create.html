@@ -1,27 +1,6 @@
-{% extends "base.html" %}
-{% load staticfiles %}
+{% extends "slide_base.html" %}
 
-{% block content %}
-<head>
-<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" href="{% static "reveal/css/reveal.css" %}">
-<link rel="stylesheet" href="{% static "reveal/css/theme/default.css" %}">
-
-<!-- For syntax highlighting -->
-<link rel="stylesheet" href="{% static "reveal/lib/css/zenburn.css" %}">
-
-<script>
-			// If the query includes 'print-pdf' we'll use the PDF print sheet
-			var u = "reveal/css/print/" + ( window.location.search.match( /print-pdf/gi ) ? "pdf" : "paper" ) + ".css"
-			document.write( "<link rel=\"stylesheet\" href=\"{{ STATIC_URL }}" + u + "\" type=\"text/css\" media=\"print\">" );</script>
-</head>
-
-<!-- Add angular.js 1.2.2 -->
-<script type="text/javascript" src="{% static "common/angular.min.js" %}"></script>
-<!-- TODO: Make this static instead of link -->
-<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.2/angular-sanitize.min.js"></script>
-<hr>
+{% block slides %}
 <div class="container">
 	<div class="row">
 		<div class="col-md-6">
@@ -31,90 +10,16 @@
 			<button type="button" class="btn btn-primary ">Next</button>
 		</div>
 		<div class="col-md-6">
-			{%verbatim%}
 			<div class="reveal">
 				<div class="slides" ng-bind-html="slideshow">
 					<!-- This space will be inserted from angular -->
 				</div>
 			</div>
-			{%endverbatim%}
 		</div>
 	</div>
 </div>
+{% endblock %}
 
-<script src="{% static "reveal/lib/js/head.min.js" %}"></script>
-<script src="{% static "reveal/js/reveal.min.js" %}"></script>
-
-<script>
-  	$('#show').click(function(){
-     var extracted = $("#text").val();
-     console.log(extracted);
-     save(extracted);
-  	});
-
+{% block slide_script %}
 	angular.module('reveal', ['ngSanitize']);
-
-  	function save(extracted) {
-  		$.ajax({
-				  type: "POST",
-				  url: '/reveal/save',
-				  data: extracted,
-					headers: { "X-CSRFToken": getCookie("csrftoken") }
-				  // success: success,
-				  // dataType: dataType
-			});
-  		console.log("Saved");
-  	}
-
-  	function getCookie(c_name)
-    {
-        if (document.cookie.length > 0)
-        {
-            c_start = document.cookie.indexOf(c_name + "=");
-            if (c_start != -1)
-            {
-                c_start = c_start + c_name.length + 1;
-                c_end = document.cookie.indexOf(";", c_start);
-                if (c_end == -1) c_end = document.cookie.length;
-                return unescape(document.cookie.substring(c_start,c_end));
-            }
-        }
-        return "";
-     }
-
-		// Full list of configuration options available here:
-		// https://github.com/hakimel/reveal.js#configuration
-		Reveal.initialize({
-			controls: true,
-			progress: true,
-			history: true,
-			center: true,
-
-			transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/linear(2d)
-
-			// Optional libraries used to extend on reveal.js
-			dependencies: [
-				{ src: "{% static "reveal/lib/js/classList.js" %}", condition: function() {
-					return !document.body.classList; } },
-
-				{ src: "{% static "reveal/plugin/markdown/marked.js" %}", condition: function() {
-					return !!document.querySelector( '[data-markdown]' ); } },
-
-				{ src: "{% static "reveal/plugin/markdown/markdown.js" %}", condition: function() {
-					return !!document.querySelector( '[data-markdown]' ); } },
-
-				{ src: "{% static "reveal/plugin/highlight/highlight.js" %}",
-					async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-
-				{ src: "{% static "reveal/plugin/zoom-js/zoom.js" %}", async: true, condition: function() {
-					return !!document.body.classList; } },
-
-				{ src: "{% static "reveal/plugin/notes/notes.js" %}", async: true, condition: function() {
-					return !!document.body.classList; } },
-
-        { src: "{% static "reveal/plugin/math/math.js" %}", async: true }
-			]
-		});
-
-	</script>
-{% endblock content %}
+{% endblock slide_script %}
