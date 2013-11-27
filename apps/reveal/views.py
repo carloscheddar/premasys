@@ -11,7 +11,13 @@ def Create(request):
 
 def Save(request):
 	post = request.POST.keys()[0]
-	Lesson(username=request.user, slide=post).save()
+	page =  request.META['HTTP_REFERER'].split('/')
+	if page[-1] == 'create':
+		Lesson(username=request.user, slide=post).save()
+	elif page[-2] == 'edit':
+		lesson = get_object_or_404(Lesson, pk=page[-1])
+		lesson.slide = post
+		lesson.save()
 	return render_to_response("save.html", RequestContext(request,{'h': 'hello'}))
 
 def Show(request, lesson_id):
