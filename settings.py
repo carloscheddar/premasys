@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'users',
     'bootstrap3',
     'widget_tweaks', #Library to add css to forms
+    'moodle_auth', #App to authenticate with moodle
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'

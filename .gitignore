@@ -5,3 +5,4 @@ settings_local.py
 *.pyc
 *.sqlite
 .DS_Store
+.env
