@@ -75,7 +75,7 @@
 
 
         <form method="post" action="{% url 'moodle_auth' %}" class="form-signin">{% csrf_token %}
-          <h2 class="form-signin-heading">Please sign in</h2>
+          <h2 class="form-signin-heading">Login with moodle</h2>
           {% render_field form.username placeholder=form.username.label class+="form-control" %}
           {% render_field form.password placeholder=form.password.label class+="form-control" %}
           <input type="submit" value="Moodle Login" class="btn btn-lg btn-primary btn-block"/>
