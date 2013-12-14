@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response
+from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 
 from forms import MoodleForm
@@ -6,7 +7,7 @@ import bcrypt
 import os
 import requests
 from registration.models import User
-
+from registration.backends.simple.views import RegistrationView
 
 def Authenticate(request):
     if request.method == 'POST':
@@ -28,6 +29,17 @@ def Authenticate(request):
         if clean(password, salt):
             authenticated = True
 
+        if authenticated:
+            try:
+                user = get_object_or_404(User, username=username)
+                print "User already in database"
+            except:
+                reg = RegistrationView()
+                data = {'username': username,
+                        'email': email,
+                        'password1':password}
+                reg.register(request, **data)
+                #mUser = User(username=username, email=email, password=salt)
 
     return render_to_response("moodle_auth.html", RequestContext(request, {'username': username,
                                                                            'email': email,
