@@ -39,11 +39,14 @@ def Authenticate(request):
                 new_user = authenticate(username=username, password=password)
 
                 #Check if the username exists
-                user = get_object_or_404(User, username=username)
+                try:
+                    user = get_object_or_404(User, username=username)
+                except:
+                    user = None
 
                 #If the user exists, is authenticated but wrong password
                 #then the username exists in our database.
-                if authenticated and new_user is None and user:
+                if authenticated and new_user is None and user is not None:
                     messages.error(request, "Username already in local database")
                     return MoodleLogin(request)
 
