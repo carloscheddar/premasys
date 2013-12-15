@@ -1,6 +1,10 @@
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
+from django.contrib.auth import authenticate
+from django.contrib.auth import login
+from registration import signals
+
 
 from forms import MoodleForm
 import bcrypt
@@ -25,26 +29,30 @@ def Authenticate(request):
             api = requests.get(moodleUrl, params=payload).json()[0]
             salt = api['password'].encode('utf-8')
             email = api['email']
+
+            #Check if the user and password match with moodle
+            if clean(password, salt):
+                authenticated = True
+                new_user = authenticate(username=username, password=password)
+                print new_user
+                if new_user:
+                    # user = get_object_or_404(User, username=username)
+                    login(request, new_user)
+                    print "User already in database"
+                #If this is the first moodle login then register the user
+                else:
+                    reg = RegistrationView()
+                    data = {'username': username,
+                            'email': email,
+                            'password1':password}
+                    #Register the user and log him in
+                    reg.register(request, **data)
+
+            else:
+                print "Invalid moodle credentials"
+
         except:
             print "Username not in our moodle database"
-
-        #Check if the user and password match with moodle
-        #TODO: Refactor this into if/else
-        if clean(password, salt):
-            authenticated = True
-
-        if authenticated:
-            try:
-                user = get_object_or_404(User, username=username)
-                print "User already in database"
-            #If this is the first moodle login then register the user
-            except:
-                reg = RegistrationView()
-                data = {'username': username,
-                        'email': email,
-                        'password1':password}
-                #Register the user and log him in
-                reg.register(request, **data)
 
     return render_to_response("moodle_auth.html", RequestContext(request, {'username': username,
                                                                            'email': email,
