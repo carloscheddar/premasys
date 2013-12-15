@@ -7,6 +7,7 @@ from forms import MoodleForm
 from registration.models import User
 from registration.backends.simple.views import RegistrationView
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 import bcrypt
 import os
@@ -43,12 +44,12 @@ def Authenticate(request):
                 #If the user exists, is authenticated but wrong password
                 #then the username exists in our database.
                 if authenticated and new_user is None and user:
-                    print "Username already in local database"
+                    messages.error(request, "Username already in local database")
+                    return MoodleLogin(request)
 
                 #Login the user with moodle
                 if new_user:
                     login(request, new_user)
-                    print "User already in database"
 
                 #If this is the first moodle login then register the user
                 else:
@@ -61,11 +62,13 @@ def Authenticate(request):
 
             #Username in moodle but wrong password
             else:
-                print "Invalid moodle credentials"
+                messages.error(request, "Invalid moodle credentials")
+                return MoodleLogin(request)
 
         #Username not in moodle
         except:
-            print "Username not in our moodle database"
+            messages.error(request, "Username not in our moodle database")
+            return MoodleLogin(request)
 
     return HttpResponseRedirect('/')
 
