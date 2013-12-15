@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from forms import MoodleForm
 from registration.models import User
 from registration.backends.simple.views import RegistrationView
+from django.http import HttpResponseRedirect
 
 import bcrypt
 import os
@@ -66,9 +67,7 @@ def Authenticate(request):
         except:
             print "Username not in our moodle database"
 
-    return render_to_response("moodle_auth.html", RequestContext(request, {'username': username,
-                                                                           'email': email,
-                                                                           'auth': authenticated}))
+    return HttpResponseRedirect('/')
 
 
 def MoodleLogin(request):

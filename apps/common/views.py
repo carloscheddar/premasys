@@ -9,4 +9,4 @@ def Common(request):
 		user = User.objects.get( username=request.user)
 	except:
 		user = ''
-	return render_to_response("base.html", RequestContext(request, {'user': user} ) )
+	return render_to_response("base.html", RequestContext(request, {'user': user}))
