@@ -1,12 +1,18 @@
 {% extends "slide_base.html" %}
+{% load staticfiles %}
 
 {% block slides %}
+<style type="text/css">
+#text {
+   font-size: 20pt;
+   font-family: "League Gothic", Impact, sans-serif;
+}
+</style>
 
 <div ng-controller="Ctrl" class="container">
   <div class="row">
     <div class="col-md-6">
-      <textarea id="text" ng-model="slideshow" class="form-control" rows="10" >
-      </textarea>
+      <textarea id="text" ng-model="slideshow" class="form-control" rows="10" ></textarea>
       <button type="button" class="btn btn-primary">Previous</button>
       <button type="button" id="show" class="btn btn-primary btn-success" >Show</button>
       <button type="button" class="btn btn-primary ">Next</button>
@@ -14,27 +20,15 @@
     <div class="col-md-6">
       <div class="reveal">
         <div class="slides" ng-bind-html="slideshow">
-          <!-- This space will be inserted from angular -->
-        </div>
+          <!-- This space will be inserted from angular --> </div>
       </div>
     </div>
   </div>
 </div>
+<script>
+  var slides = '{{ slide.slide|escapejs }}';
+</script>
 
+<script type="text/javascript" src="{% static "slides/edit.js" %}"></script>
 
-  {% block slide_script %}
-    //Alternative method
-    // function Ctrl($scope){
-    //   $scope.slideshow = '{{ slide.slide|escapejs }}';
-    //   $scope.setslideshow = function (slideshow) {
-    //           $scope.slideshow = slideshow;
-    //       }
-    // }
-
-    angular.module('reveal', ['ngSanitize'])
-      .controller('Ctrl', ['$scope', function Ctrl($scope) {
-        $scope.slideshow =
-          '{{ slide.slide|escapejs }}';
-      }]);
-  {% endblock slide_script %}
 {% endblock %}

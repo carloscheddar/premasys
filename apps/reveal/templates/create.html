@@ -1,4 +1,5 @@
 {% extends "slide_base.html" %}
+{% load staticfiles %}
 
 {% block slides %}
 <div class="container">
@@ -18,8 +19,7 @@
 		</div>
 	</div>
 </div>
-{% endblock %}
 
-{% block slide_script %}
-	angular.module('reveal', ['ngSanitize']);
-{% endblock slide_script %}
+<script type="text/javascript" src="{% static "slides/create.js" %}"></script>
+
+{% endblock %}
