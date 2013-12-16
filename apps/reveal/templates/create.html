@@ -2,13 +2,16 @@
 {% load staticfiles %}
 
 {% block slides %}
-<div class="container">
+<div ng-controller="Ctrl" class="container">
 	<div class="row">
 		<div class="col-md-6">
 			<textarea id="text" ng-model="slideshow" class="form-control" rows="10" placeholder="Start your slides!"></textarea>
-			<button type="button" class="btn btn-primary">Previous</button>
+			<button type="button" ng-click="slide(counter-1)" class="btn btn-primary">Previous</button>
 			<button type="button" id="show" class="btn btn-primary btn-success" >Show</button>
-			<button type="button" class="btn btn-primary ">Next</button>
+			<button type="button" ng-click="slide(counter+1)" class="btn btn-primary">Next</button>
+			{% verbatim %}
+				<h3 style="color:white">{{counter}}</h3>
+			{% endverbatim %}
 		</div>
 		<div class="col-md-6">
 			<div class="reveal">
