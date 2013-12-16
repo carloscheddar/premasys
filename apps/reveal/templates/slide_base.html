@@ -31,28 +31,6 @@
 <script src="{% static "reveal/js/reveal.min.js" %}"></script>
 
 <script>
-    $('#show').click(function(){
-     var extracted = $("#text").val();
-     console.log(extracted);
-     save(extracted);
-    });
-
-    {% block slide_script %}
-
-    {% endblock slide_script %}
-
-    function save(extracted) {
-      $.ajax({
-          type: "POST",
-          url: '/reveal/save',
-          data: extracted,
-          headers: { "X-CSRFToken": getCookie("csrftoken") }
-          // success: success,
-          // dataType: dataType
-      });
-      console.log("Saved");
-    }
-
     function getCookie(c_name)
     {
         if (document.cookie.length > 0)

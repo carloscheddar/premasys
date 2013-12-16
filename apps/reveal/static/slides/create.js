@@ -1,16 +1,32 @@
 var textarea = [];
-textarea[0] = "<h1>Hello</h1>";
-textarea[1] = "<h2>Welcome</h2>";
+var template = '<section>\n' + "<h1>Write</h1>\n<h2>Here!</h2>\n" + '</section>';
 
 angular.module('reveal', ['ngSanitize'])
   .controller('Ctrl', ['$scope',
     function Ctrl($scope) {
       $scope.counter = 0;
-      $scope.slideshow = '<section>' + textarea[$scope.counter] + '</section>';
+      $scope.slideshow = template;
       $scope.slide = function(count) {
         $scope.counter = count;
-        $scope.slideshow = '<section>' + textarea[count] + '</section>';
+        if (textarea[count]) {
+          $scope.slideshow = textarea[count];
+        } else{
+          $scope.slideshow = template;
+        }
+        console.log(textarea);
+      };
+      $scope.update = function() {
+        textarea[$scope.counter] = $scope.slideshow;
+      };
+      $scope.save = function() {
+        var json = JSON.stringify(textarea);
+        $.ajax({
+            type: "POST",
+            url: '/reveal/save',
+            data: json,
+            headers: { "X-CSRFToken": getCookie("csrftoken") }
+        });
+        console.log("Saved");
       };
     }
   ]);
-console.log(counter);
