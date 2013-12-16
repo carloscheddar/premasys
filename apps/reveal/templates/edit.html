@@ -12,10 +12,13 @@
 <div ng-controller="Ctrl" class="container">
   <div class="row">
     <div class="col-md-6">
-      <textarea id="text" ng-model="slideshow" class="form-control" rows="10" ></textarea>
-      <button type="button" class="btn btn-primary">Previous</button>
-      <button type="button" id="show" class="btn btn-primary btn-success" >Show</button>
-      <button type="button" class="btn btn-primary ">Next</button>
+      <textarea id="text" ng-model="slideshow" ng-keyup="update()" class="form-control" rows="10" ></textarea>
+      <button type="button" ng-click="slide(counter-1)" class="btn btn-primary">Previous</button>
+      <button type="button" id="show" ng-click="save()" class="btn btn-primary btn-success" >Show</button>
+      <button type="button" ng-click="slide(counter+1)" class="btn btn-primary">Next</button>
+      {% verbatim %}
+        <h3 style="color:white">Slide: {{counter+1}}</h3>
+      {% endverbatim %}
     </div>
     <div class="col-md-6">
       <div class="reveal">
@@ -26,7 +29,7 @@
   </div>
 </div>
 <script>
-  var slides = '{{ slide.slide|escapejs }}';
+  var textarea = {{ slide|safe }};
 </script>
 
 <script type="text/javascript" src="{% static "slides/edit.js" %}"></script>
