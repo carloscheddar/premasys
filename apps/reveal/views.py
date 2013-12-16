@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from reveal.models import Lesson
+import ast
 
 
 def Reveal(request):
@@ -31,4 +32,5 @@ def Show(request, lesson_id):
 
 def Edit(request, lesson_id):
     slide = get_object_or_404(Lesson, pk=lesson_id)
+    slide = ast.literal_eval(slide.slide)
     return render_to_response("edit.html", RequestContext(request, {'slide': slide}))
