@@ -1,0 +1,7 @@
+pip-egg-info/django_registration_defaults.egg-info/PKG-INFO
+pip-egg-info/django_registration_defaults.egg-info/SOURCES.txt
+pip-egg-info/django_registration_defaults.egg-info/dependency_links.txt
+pip-egg-info/django_registration_defaults.egg-info/not-zip-safe
+pip-egg-info/django_registration_defaults.egg-info/top_level.txt
+registration_defaults/__init__.py
+registration_defaults/settings.py

@@ -1,0 +1,148 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Graph models &mdash; django-extensions 0.9.1-beta documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.9.1-beta',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="django-extensions 0.9.1-beta documentation" href="index.html" />
+    <link rel="next" title="Installation instructions" href="installation_instructions.html" />
+    <link rel="prev" title="Field Extensions" href="field_extensions.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="installation_instructions.html" title="Installation instructions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="field_extensions.html" title="Field Extensions"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">django-extensions 0.9.1-beta documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="graph-models">
+<h1>Graph models<a class="headerlink" href="#graph-models" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">synopsis:</th><td class="field-body">Renders a graphical overview of your project or specified apps.</td>
+</tr>
+</tbody>
+</table>
+<p>Creates a <a class="reference external" href="http://www.graphviz.org/">GraphViz</a> dot file for the specified app names.  You can pass
+multiple app names and they will all be combined into a single model.  Output
+is usually directed to a dot file.</p>
+<p>With the latest revisions it&#8217;s also possible to specify an output file if
+<a class="reference external" href="https://networkx.lanl.gov/wiki/pygraphviz">pygraphviz</a> is installed and render directly to an image or other supported
+filetype.</p>
+<div class="section" id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Permalink to this headline">¶</a></h2>
+<p>With <em>django-command-extensions</em> installed you can create a dot-file or an
+image by using the <em>graph_models</em> command. Like used in the following examples:</p>
+<div class="highlight-python"><pre># Create a dot file
+$ ./manage.py graph_models -a &gt; my_project.dot</pre>
+</div>
+<div class="highlight-python"><pre># Create a PNG image file called my_project_visualized.png with application grouping
+$ ./manage.py graph_models -a -g -o my_project_visualized.png</pre>
+</div>
+<div class="highlight-python"><pre># Create a dot file for only the 'foo' and 'bar' applications of your project
+$ ./manage.py graph_models foo bar &gt; my_project.dot</pre>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Graph models</a><ul>
+<li><a class="reference internal" href="#example-usage">Example Usage</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="field_extensions.html"
+                        title="previous chapter">Field Extensions</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installation_instructions.html"
+                        title="next chapter">Installation instructions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/graph_models.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="installation_instructions.html" title="Installation instructions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="field_extensions.html" title="Field Extensions"
+             >previous</a> |</li>
+        <li><a href="index.html">django-extensions 0.9.1-beta documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright Copyright (C) 2008, 2009, 2010, 2011, 2012 Michael Trier, Bas van Oostveen and contributors.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

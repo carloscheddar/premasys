@@ -1,0 +1,50 @@
+==================
+   Design Ideas
+==================
+:Author: Martin Blais <blais@furius.ca>
+:Date: 2006-06-12
+:Abstract:
+
+    Design ideas related to antiorm and antipool.
+
+.. contents::
+.. 
+
+
+We need to find a way to automatically take care of the case for a single
+operation, be it read-only of writable (which would include an implicit commit).
+
+
+Some ideas::
+
+  ConnWrap(dbpool, TestTable, rw=1).update(
+  ConnWrap(TestTable, rw=1).update(
+
+  OpWrap(TestTable).update(
+  OpWrap(TestTable, rw=1).update(
+
+  TestTable.op().update(
+  TestTable.op(rw=1).update(
+
+  # No need, the operations are one or the other already
+  TestTable.ro.update(
+  TestTable.rw.update(
+
+  TestTable.op_ro.update(
+  TestTable.op_rw.update(
+
+  TestTable.c.select(
+  TestTable.c.update(
+  TestTable.c.insert(
+  TestTable.c.delete(
+
+
+* We assume the pool implicitly is ``dbpool().connection()``.  If we do that, it
+  makes more sense for the wrapper to belong to antipool.
+
+* select() should not be allowed, because the user has to keep the connection
+  for the entire fetch operation.
+
+
+
+

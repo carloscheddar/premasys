@@ -1,0 +1,114 @@
+===================================
+   Angry Motivation for Anti-ORM
+===================================
+:Author: Martin Blais <blais@furius.ca>
+:Date: 2006-04-06
+:Abstract:
+
+  Motivation document for Anti-ORM.  Pardon the tone, I was pissed off when I
+  wrote it.
+
+
+This module does *NOT* aspire to become a full object-relational mapper, in
+fact, this is exactly what we're trying to avoid here.  When you think about it,
+an ORM brings you features like these:
+
+1. Connection pooling
+2. Mapping of tables to objects and vice-versa
+3. Caching of objects
+4. Creation of tables from a Pythonic class declaration
+5. Automatic type conversion to/from the database
+6. They support multiple databases.
+7. Auto-commit.
+
+The problems that occur when you use the open source ORMs out there are the
+following:
+
+* Those libraries are trying to do too much for you.  For example, they all get
+  into the business of trying to cache fetched data, and it is invariably
+  difficult to predict where cached data will be used, and sometimes when to
+  clear the cache.  In addition, some libraries--e.g. SQLObject-- have simply
+  badly defined semantics related to their caching.
+
+* They often perform too many queries, queries in a loop that could be performed
+  all at once with a single SQL query, but that the Pythonic interface makes
+  really inconvenient to code properly.  The 'easy' form of their interface is
+  not performant, and makes it difficult to really know where/when the queries
+  will occur.  Also, oftentimes, many useless queries are performed; a typical
+  example is that after every INSERT statement the libraries try to refresh the
+  object that correspond to the new row, even if it's never to be used.
+
+* The open source libraries are bug ridden and often not thread-safe.  Some of
+  the people who contribute to these libraries simply do not understand
+  concurrent programming (check the mailing-lists, that should convince you).
+
+* If you want to use the full power of your database, you NEED to go down to the
+  level of SQL, you need to write your own SQL queries.  There is no way around
+  that.  I'm one of those guys who just LOVED Philip Greenspun's PANDA and
+  thinks that coding his request to the bare metal like in his examples is the
+  way to go to write web applications.  You SHOULD see the SQL.  And if you
+  can't f**king learn SQL, you should not be programming database-based web
+  sites.  If you're not happy with that, bugger off!  (I'm angry, no, really,
+  I have to hate ORMs at this point, my time is too precious for that sh*t.)
+
+* Connection pooling can be performed nicely outside the ORM level.
+
+That being said, there are a few things that we may be able to do with Python
+over the DBAPI-2.0, that makes writing queries more convenient:
+
+* We need some form of type conversion.  The DBAPI-2.0 API already does most of
+  the job for you.  However, with PostgreSQL, the strings always come back UTF-8
+  encoded.  I want to be able to discern between encoded strings and unicode
+  objects, and to have the decoding performed automatically.
+
+* I want a more intuitive syntax.  The differences between the various ways in
+  which columns and values are specified in SQL statements makes it annoying to
+  change them.  We should have a more Pythonic syntax.
+
+* I want the quoting of values to be automatic, and I want to reuse DBAPI's code
+  that already does this.
+
+* I want to be able to restrict the columns that are fetched from the database.
+
+* I want to be able to build complex statements that involve multiple tables in
+  a single SQL query.
+
+Also, there are features that I do not care for:
+
+* I do not really need connection pooling.  It's easily done from outside this
+  library.  You can also use SQLRelay.  Besides, sometimes you really just don't
+  need it.
+
+* I do not need to have my creation statements declared automatically: I
+  actually like to have big strings with actual SQL code so I can use the full
+  power of my database.  I know it's not portable, but I don't care.  If you
+  port you'll have to review all that stuff anyway.
+
+* I use PostgreSQL only.  I don't need database abstraction beyond DBAPI.  (This
+  being said, it would be possible to make this library provide some level of
+  abstraction, it's really not that hard.)
+
+SQLAlchemy is trying to address these issues, but IMO they are still doing waaay
+too much.  I want something SIMPLE, and I found that I could easily replace
+SQLObject for an entire web application with this simple one-file module, and
+now I'm living a much happier life.  The new code makes it really clear where
+the DB is accessed, and I could drastically reduce the number of calls
+performed, and I don't have to chase ORM bugs every 5 minutes, DBAPI just
+friggin works.
+
+This is not a case of NIH.  I'm sick of packages trying to hide everything
+behind layers and layers of abstraction.  Debugging galore.  I have not seen a
+single ORM which works simply and without tons of bugs.  And I LOVE seeing the
+SQL statements.  Don't be afraid of SQL.  If you don't want to learn something
+new in your life, you should not be programming, there are plenty of other
+career opportunities.  All I want to do with this code is ease creating SQL
+statements using a more Pythonic approach to help 'fill in the blanks' more
+easily.  You can work at a variety of levels (low-level, where you actually
+build your own statement with the helpers (see tests for details), or
+high-level, which is more-or-less similar to where the ORMs make you work at).
+I find that this is actually almost as good as a full-blown ORM.  Anyway, the
+point is, this is not for Mickey Mouse programmers who want everything hidden
+from them, this is for those who like it to the bare metal, raw, but who want to
+enjoy a tiny little bit more convenience.  If this does not strike your fancy,
+install some big-arse ORM and go debugging for hours!  BLEH!
+

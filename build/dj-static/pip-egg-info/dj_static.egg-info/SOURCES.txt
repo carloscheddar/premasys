@@ -1,0 +1,8 @@
+dj_static.py
+setup.cfg
+pip-egg-info/dj_static.egg-info/PKG-INFO
+pip-egg-info/dj_static.egg-info/SOURCES.txt
+pip-egg-info/dj_static.egg-info/dependency_links.txt
+pip-egg-info/dj_static.egg-info/not-zip-safe
+pip-egg-info/dj_static.egg-info/requires.txt
+pip-egg-info/dj_static.egg-info/top_level.txt

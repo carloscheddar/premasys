@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# $Id: env,v 1.5 2005/02/01 23:08:21 blais Exp $
+#
+# My environment initialization for this project.  This could or could not be
+# used as an example for your own settings for development.
+
+PYTHONPATH=$PYTHONPATH:$PROJDIR/lib/python
+PYTHONPATH_FALLBACK=$PYTHONPATH_FALLBACK:$PROJDIR/lib/python-fallback

@@ -1,0 +1,82 @@
+===================
+   TODO: antiorm
+===================
+
+- Check that dbapiext properly avoids creating a new stmt every time
+  (sends a constant stmt for a constant req).
+
+  - Cache the stmt making engine depending the types provided at
+    input, including list lengths.
+
+- dbapiext.py: Add examples on the web page that describes how to
+  clean up code.
+
+- Add support for namedtuple on input.
+
+- Perhaps add a wrapper for results that uses namedtuple. Look at
+  psycopg2.extras::
+
+    from pyscopg2.extras miport DictConnection
+
+From Sean::
+Poorly documented, here's the short form:
+
+   from rawstdin import hotkey, menukey
+   if hotkey('Ready to continue?  Y)es  N)o') == 'y':
+      print "Yes was selected"
+
+   qQuit = 'Q)uit'
+   qAssignItems = 'A)ssign items'
+   qDateRange = 'D)ate range'
+   qReportInvoices = 'R)eport invoices'
+   menu = ( qAssignItems, qReportInvoices, qDateRange, qQuit )
+
+   answer = menukey(qQuit, qAssignItems, qDateRange, qReportInvoices)
+   answer = menukey(*menu)
+   print answer
+
+   from psycopgwrap import Database as db
+   for row in db.query('SELECT * FROM ptinvoicestatus LIMIT 1'):
+      ...
+   for row in db.query('SELECT * FROM ptinvoicestatus WHERE id = %s', id):
+      ...
+      print 'id:', row['id']
+
+
+
+
+
+antipool:
+
+- Explain in more detail what happens if the DB server gets restarted and while
+  some connections had been allocated.  Are they cleared properly?
+
+  See DBUtils:
+
+    DBUtils.SolidDB is a module implementing "hardened" connections to a database,
+    based on ordinary connections made by any DB-API 2 database module. A
+    "hardened" connection will transparently reopen upon access when it has been
+    closed or the database connection has been lost or when it is used more often
+    than an optional usage limit.
+
+    A typical example where this is needed is when the database has been restarted
+    while your application is still running and has open connections to the
+    database, or when your application accesses a remote database in a network
+    that is separated by a firewall and the firewall has been restarted and lost
+    its state.
+
+- Prevent DELETE without a WHERE
+
+- Add to script debug_unreleased option
+
+- Test user_readonly option
+
+- Add support for Python-2.5's with statement
+
+- Make sure autocommit is disabled on antipool startup.
+
+- Output gnuplot graphs of acquired vs. pool size in debugging mode.
+
+- Write a better test for speed.
+
+

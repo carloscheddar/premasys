@@ -1,0 +1,10 @@
+Description: A Pythonic Helper for DBAPI-2.0 SQL Access
+Official-Homepage: http://furius.ca/antiorm
+Author: Martin Blais
+Author-Email: blais@furius.ca
+ChangeLog: http://furius.ca/antiorm/CHANGES
+Bugs-Reporting: mailto:blais@furius.ca
+Download-Releases: http://furius.ca/downloads/antiorm/releases
+Download-Snapshots: http://furius.ca/downloads/antiorm/snapshots
+License: GNU GPL
+
