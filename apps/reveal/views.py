@@ -46,13 +46,13 @@ def Save_Lesson(lesson):
 
 ####GET FUNCTIONS####
 
-#
+#Getting ansuers with Question ID
 def Get_All_Answers(Q_ID):
 	answers = Answers.objects.all().filter(QuestionID = Q_ID)
 	return answers
 
-#
-def Get_Question(C_ID):
+#Getting Questions with the COntent ID of the slide.
+def Get_Question_On_Content(C_ID):
 	question = Question.objects.filter(ContentID = C_ID)
 	question["answers"]= Get_All_Answers(question["QuestionID"])#access question correctly
 
@@ -85,6 +85,18 @@ def Get_Lesson(L_ID):
 	lesson["Subject"] = Get_Subject(L_ID)
 
 	return lesson
+
+#
+def Get_Questions_On_Lesson(L_ID):
+	qIDs = []
+	slides = Get_All_Slides(L_ID);
+	for sIDs in slides["ID"]:
+		content = Get_All_Content(sIDs)
+		for cIDs in content["ID"]:
+			question = Get_Question_On_Content(cIDs)
+			qIDs.append( question["ID"] )
+
+	return qIDs
 
 	
 ### VIEW A COURSE OR LESSON FUNCTIONS
