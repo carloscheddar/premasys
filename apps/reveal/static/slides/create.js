@@ -1,13 +1,16 @@
 var textarea = [];
 var html = [];
-// var template = '<section>\n' + "<h1>Write</h1>\n<h2>Here!</h2>\n" + '</section>';
-var template = "(h1 Hello) (h2 There)";
+var template = "(h1 Hello) (h2 World)";
 
 angular.module('reveal', ['ngSanitize'])
   .controller('Ctrl', ['$scope',
     function Ctrl($scope) {
       $scope.counter = 0;
       $scope.slideshow = template;
+      $scope.value= js2html(parse(template));
+
+      // Function that moves the lesson forwards or backwards
+      // Ex. slide(3) gives you the third slide
       $scope.slide = function(count) {
         $scope.counter = count;
         if (textarea[count]) {
@@ -15,13 +18,21 @@ angular.module('reveal', ['ngSanitize'])
         } else {
           $scope.slideshow = template;
         }
+        $scope.value= js2html(parse($scope.slideshow));
         console.log(textarea);
       };
+
+      // This function is called on keyup() so that the lesson
+      // updates its values
       $scope.update = function() {
         textarea[$scope.counter] = $scope.slideshow;
         console.log($scope.slideshow);
         $scope.value= js2html(parse($scope.slideshow));
+        console.log($scope.value);
       };
+
+      // This function converts the lesson and sends it to
+      // the django view to be stored
       $scope.save = function() {
         var json = JSON.stringify(textarea);
         $.ajax({
@@ -36,6 +47,9 @@ angular.module('reveal', ['ngSanitize'])
       };
     }
   ]);
+
+// Function that finds blocks of parenthesis and outputs arrays
+// Ex: (h1 Hello) (h2 World) --> [[h1, 'Hello'], [h2, 'World']]
 var parse = function(text) {
   var regExp = /\(([^)]+)\)/g;
   var matches = text.match(regExp);
@@ -48,6 +62,9 @@ var parse = function(text) {
   }
   return results;
 };
+
+// Function that receives an array and converts it to html
+// Ex. [[h1, 'Hello'], [h2, 'World']] --> <h1>Hello</h1><h2>World</h2>
 var js2html = function(results) {
   var string = '';
   for (var i = 0; i < results.length; i++) {
