@@ -36,16 +36,16 @@ angular.module('reveal', ['ngSanitize'])
       // This function converts the lesson and sends it to
       // the django view to be stored
       $scope.save = function() {
-        var json = JSON.stringify(textarea);
-        console.log(les2json());
-        // $.ajax({
-        //   type: "POST",
-        //   url: '/reveal/save',
-        //   data: json,
-        //   headers: {
-        //     "X-CSRFToken": getCookie("csrftoken")
-        //   }
-        // });
+        var json = JSON.stringify(les2json());
+        console.log(json);
+        $.ajax({
+          type: "POST",
+          url: '/reveal/save',
+          data: json,
+          headers: {
+            "X-CSRFToken": getCookie("csrftoken")
+          }
+        });
         console.log("Saved");
       };
     }
