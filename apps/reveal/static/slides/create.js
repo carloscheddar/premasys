@@ -83,7 +83,7 @@ var les2json = function(argument) {
   var json = [];
   for (var i = 0; i < textarea.length; i++) {
     json.push({
-      "type": "question",
+      "type": "text",
       "text": textarea[i]
     });
   }
