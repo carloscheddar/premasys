@@ -17,6 +17,8 @@ angular.module('reveal', ['ngSanitize'])
       };
       $scope.update = function() {
         textarea[$scope.counter] = $scope.slideshow;
+        Reveal.toggleOverview();
+        Reveal.toggleOverview();
       };
       $scope.save = function() {
         var json = JSON.stringify(textarea);
