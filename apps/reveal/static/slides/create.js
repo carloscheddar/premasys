@@ -12,14 +12,16 @@ angular.module('reveal', ['ngSanitize'])
       // Function that moves the lesson forwards or backwards
       // Ex. slide(3) gives you the third slide
       $scope.slide = function(count) {
-        $scope.counter = count;
-        if (textarea[count]) {
-          $scope.slideshow = textarea[count];
-        } else {
-          $scope.slideshow = template;
+        if (count >= 0 && count <= textarea.length) {
+          $scope.counter = count;
+          if (textarea[count]) {
+            $scope.slideshow = textarea[count];
+          } else {
+            $scope.slideshow = template;
+          }
+          $scope.value= js2html(parse($scope.slideshow));
+          console.log(textarea);
         }
-        $scope.value= js2html(parse($scope.slideshow));
-        console.log(textarea);
       };
 
       // This function is called on keyup() so that the lesson
@@ -35,14 +37,15 @@ angular.module('reveal', ['ngSanitize'])
       // the django view to be stored
       $scope.save = function() {
         var json = JSON.stringify(textarea);
-        $.ajax({
-          type: "POST",
-          url: '/reveal/save',
-          data: json,
-          headers: {
-            "X-CSRFToken": getCookie("csrftoken")
-          }
-        });
+        console.log(les2json());
+        // $.ajax({
+        //   type: "POST",
+        //   url: '/reveal/save',
+        //   data: json,
+        //   headers: {
+        //     "X-CSRFToken": getCookie("csrftoken")
+        //   }
+        // });
         console.log("Saved");
       };
     }
@@ -73,4 +76,16 @@ var js2html = function(results) {
     string += "<" + type + ">" + content + "</" + type + ">";
   }
   return string;
+};
+
+//Lesson to json
+var les2json = function(argument) {
+  var json = [];
+  for (var i = 0; i < textarea.length; i++) {
+    json.push({
+      "type": "question",
+      "text": textarea[i]
+    });
+  }
+  return json;
 };
