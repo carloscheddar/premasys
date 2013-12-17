@@ -104,6 +104,13 @@ function jsonToPList(slide)
                  getQuestionChoices(question),
                  getQuestionAnswers(question)];
   }
+  
+  else if (slide["type"] == "text")
+  {
+    var text = slide["text"];
+    var pList = [makeEntry("text",text)];
+  }
+  
   return pList.join("");
 }
 
