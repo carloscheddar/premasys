@@ -89,3 +89,57 @@ var les2json = function(argument) {
   }
   return json;
 };
+
+
+// --------- PLIST FUNCTIONS ----------
+
+// Receive a slide as a json object and return
+// as PList
+function jsonToPList(slide)
+{
+  if (slide["type"] == "question")
+  {
+    var question = slide["question"];
+    var pList = [getQuestionText(question),
+                 getQuestionChoices(question),
+                 getQuestionAnswers(question)];
+  }
+  return pList.join("");
+}
+
+// Get the body of the question is PList format
+function getQuestionText(question) 
+{
+  var text = question["body"];
+  return makeEntry("question",text)
+}
+
+// Get a string that contains all choices as PLists
+function getQuestionChoices(question)
+{
+  // Get the list of choices that aren't answers
+  var choices = question["choices"];
+  var answers = question["answers"];
+  choices = $(choices).not(answers).get();
+  choices = choices.map(
+    function(x) { return makeEntry("choice",x); }
+  );
+  return choices.join("");
+}
+
+// Get a string that contains all the correct answers
+// as PLists
+function getQuestionAnswers(question)
+{
+  answers = question["answers"];
+  answers = answers.map(
+    function(x) { return makeEntry("answer",x); }
+  );
+  return answers.join("");
+}
+
+// Receive a keyword and content, format to PList entry
+function makeEntry(keyword, content)
+{
+  return "(" + keyword + " " + content + ")";
+}
