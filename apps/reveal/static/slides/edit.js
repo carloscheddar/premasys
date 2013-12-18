@@ -76,6 +76,25 @@ var js2html = function(results) {
   for (var i = 0; i < results.length; i++) {
     type = results[i][0];
     content = results[i][1];
+    if (type == "question") {
+      type = "h3";
+    };
+    if (type == "choice") {
+      type = "li";
+    };
+    if (type == "answer") {
+      type = "li";
+      string += "<" + type + " id='answer'>" + content + "</" + type + ">";
+      continue;
+    };
+    if (type == "img") {
+      type = "h3"
+      content = "Image goes here"
+    };
+    if (type == "video") {
+      type = 'h3'
+      content = "Video goes here"
+    }
     string += "<" + type + ">" + content + "</" + type + ">";
   }
   return string;
@@ -154,38 +173,6 @@ function getQuestionAnswers(question){
 function makeEntry(keyword, content){
   return "(" + keyword + " " + content + ")";
 }
-
-// Function that receives an array and converts it to html
-// Ex. [[h1, 'Hello'], [h2, 'World']] --> <h1>Hello</h1><h2>World</h2>
-var js2html = function(results) {
-  var string = '';
-  for (var i = 0; i < results.length; i++) {
-    type = results[i][0];
-    if (type == "question") {
-      type = "h3";
-    };
-    if (type == "choice") {
-      type = "li";
-    };
-    if (type == "answer") {
-      type = "li";
-      content = results[i][1];
-      string += "<" + type + " id='answer'>" + content + "</" + type + ">";
-      continue;
-    };
-    if (type == "img") {
-      content = results[i][1];
-      string += "<h2><" + type + " src=\'//"+ content +"\'></h2>";
-      continue;
-    };
-    if (type == "video") {
-      type = h3
-    }
-    content = results[i][1];
-    string += "<" + type + ">" + content + "</" + type + ">";
-  }
-  return string;
-};
 
 function array2Plist(array){
   var val = []
