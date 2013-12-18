@@ -175,10 +175,12 @@ var js2html = function(results) {
     };
     if (type == "img") {
       content = results[i][1];
-      string += "<h2><" + type + " src=\'"+ content +"\'></h2>";
+      string += "<h2><" + type + " src=\'//"+ content +"\'></h2>";
       continue;
     };
-
+    if (type == "video") {
+      type = h3
+    }
     content = results[i][1];
     string += "<" + type + ">" + content + "</" + type + ">";
   }
