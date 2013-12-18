@@ -53,7 +53,7 @@ def json2html(json):
                 split = a.split(' ',1)
                 if split[0] == "video":
                     split[0] = "iframe";
-                    string += "<h2><" + split[0] + " src=\'//"+ split[1] +"\'></h2>";
+                    string += "<h1><" + split[0] + " width='420' height='315' src=\'//"+ split[1] +"\'></h1>";
                 if split[0] == "img":
                     string += "<h2><" + split[0] + " src=\'"+ split[1] +"\'></h2>";
                     continue;
