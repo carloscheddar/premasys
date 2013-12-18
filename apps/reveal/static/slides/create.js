@@ -2,6 +2,8 @@ var textarea = [];
 var html = [];
 var template = "(h1 Hello) (h2 World)";
 
+String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
+
 angular.module('reveal', ['ngSanitize'])
   .controller('Ctrl', ['$scope',
     function Ctrl($scope) {
@@ -36,8 +38,9 @@ angular.module('reveal', ['ngSanitize'])
       // This function converts the lesson and sends it to
       // the django view to be stored
       $scope.save = function() {
-        var json = JSON.stringify(les2json());
-        console.log(json);
+        var json = JSON.stringify(les2json(textarea));
+        // console.log("Array2Plis",array2Plist(textarea));
+        console.log("json", json);
         $.ajax({
           type: "POST",
           url: '/reveal/save',
@@ -50,6 +53,7 @@ angular.module('reveal', ['ngSanitize'])
       };
     }
   ]);
+
 
 // Function that finds blocks of parenthesis and outputs arrays
 // Ex: (h1 Hello) (h2 World) --> [[h1, 'Hello'], [h2, 'World']]
@@ -68,11 +72,32 @@ var parse = function(text) {
 
 // Function that receives an array and converts it to html
 // Ex. [[h1, 'Hello'], [h2, 'World']] --> <h1>Hello</h1><h2>World</h2>
+// Function that receives an array and converts it to html
+// Ex. [[h1, 'Hello'], [h2, 'World']] --> <h1>Hello</h1><h2>World</h2>
 var js2html = function(results) {
   var string = '';
   for (var i = 0; i < results.length; i++) {
     type = results[i][0];
     content = results[i][1];
+    if (type == "question") {
+      type = "h3";
+    }
+    else if (type == "choice") {
+      type = "li";
+    }
+    else if (type == "answer") {
+      type = "li";
+      string += "<" + type + " id='answer'>" + content + "</" + type + ">";
+      continue;
+    }
+    else if (type == "img") {
+      type = "h3"
+      content = "Image goes here"
+    }
+    else if (type == "video") {
+      type = 'h3'
+      content = "Video goes here"
+    }
     string += "<" + type + ">" + content + "</" + type + ">";
   }
   return string;
@@ -81,15 +106,22 @@ var js2html = function(results) {
 //Lesson to json
 var les2json = function(argument) {
   var json = [];
-  for (var i = 0; i < textarea.length; i++) {
-    json.push({
-      "type": "text",
-      "text": textarea[i]
-    });
+  for (var i = 0; i < argument.length; i++) {
+    if(argument[i].contains("(question")){
+      json.push({
+        "type": "question",
+        "text": argument[i]
+      });
+    }
+    else{
+      json.push({
+        "type": "text",
+        "text": argument[i]
+      });
+    }
   }
   return json;
 };
-
 
 // --------- PLIST FUNCTIONS ----------
 
@@ -106,7 +138,7 @@ function jsonToPList(slide){
 
   else if (slide["type"] == "text"){
     var text = slide["text"];
-    var pList = [makeEntry("text",text)];
+    var pList = [text];
   }
   console.log(pList);
   return pList.join("");
@@ -146,8 +178,9 @@ function makeEntry(keyword, content){
 }
 
 function array2Plist(array){
-  array = [];
+  var val = []
   for (var i = 0; i < array.length; i++) {
-    console.log(jsonToPList(array[i]));
+    val.push(jsonToPList(array[i]));
   };
+  return val;
 }
