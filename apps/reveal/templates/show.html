@@ -1,5 +1,6 @@
 	{% load staticfiles %}
 	<!doctype html>
+	<script type="text/javascript" src="{% static "common/jquery-2.0.3.min.js" %}"></script>
 	<html lang="en">
 
 		<head>
@@ -76,6 +77,11 @@
 
 						{ src: "{% static "reveal/plugin/math/math.js" %}", async: true }
 					]
+				});
+				$(document).ready(function () {
+					$('#answer').click(function() {
+					  alert( "Correct!" );
+					});
 				});
 
 			</script>
