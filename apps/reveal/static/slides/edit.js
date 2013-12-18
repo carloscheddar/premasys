@@ -1,6 +1,8 @@
 var html = [];
 var template = "(h1 Hello) (h2 World)";
 
+String.prototype.contains = function(it) { return this.indexOf(it) != -1; };
+
 angular.module('reveal', ['ngSanitize'])
   .controller('Ctrl', ['$scope',
     function Ctrl($scope) {
@@ -83,10 +85,18 @@ var js2html = function(results) {
 var les2json = function(argument) {
   var json = [];
   for (var i = 0; i < argument.length; i++) {
-    json.push({
-      "type": "text",
-      "text": argument[i]
-    });
+    if(argument[i].contains("(question")){
+      json.push({
+        "type": "question",
+        "text": argument[i]
+      });
+    }
+    else{
+      json.push({
+        "type": "text",
+        "text": argument[i]
+      });
+    }
   }
   return json;
 };
