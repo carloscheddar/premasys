@@ -51,6 +51,9 @@ def json2html(json):
             string += '<section>'
             for a in arr:
                 split = a.split(' ',1)
+                if split[0] == "img":
+                    string += "<h2><" + split[0] + " src=\'"+ split[1] +"\'></h2>";
+                    continue;
                 string += "<" + split[0] + ">" + split[1] + "</" + split[0] + ">"
             string += '</section>'
         elif t == "question":
