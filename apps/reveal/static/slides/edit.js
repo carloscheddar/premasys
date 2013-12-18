@@ -151,6 +151,24 @@ var js2html = function(results) {
   var string = '';
   for (var i = 0; i < results.length; i++) {
     type = results[i][0];
+    if (type == "question") {
+      type = "h3";
+    };
+    if (type == "choice") {
+      type = "li";
+    };
+    if (type == "answer") {
+      type = "li";
+      content = results[i][1];
+      string += "<" + type + " id='answer'>" + content + "</" + type + ">";
+      continue;
+    };
+    if (type == "img") {
+      content = results[i][1];
+      string += "<h2><" + type + " src=\'"+ content +"\'></h2>";
+      continue;
+    };
+
     content = results[i][1];
     string += "<" + type + ">" + content + "</" + type + ">";
   }
