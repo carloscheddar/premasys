@@ -35,7 +35,9 @@ def Show(request, lesson_id):
 def Edit(request, lesson_id):
     slide = get_object_or_404(Lesson, pk=lesson_id)
     slide = ast.literal_eval(slide.slide)
+    slide = json2Array(slide)
     return render_to_response("edit.html", RequestContext(request, {'slide': slide}))
+
 
 # Function to convert json to html to be displayed in show
 def json2html(json):
@@ -52,3 +54,20 @@ def json2html(json):
                 string += "<" + split[0] + ">" + split[1] + "</" + split[0] + ">"
             string += '</section>'
     return string
+
+
+# Converts json to an Array of Plist
+def json2Array(json):
+    content = []
+    string = ''
+    regex = re.compile("\(([^)]+)\)")
+    for j in json:
+        t = j["type"]
+        text = j["text"]
+        if t == "text":
+            arr = regex.findall(text)
+            string = ''
+            for a in arr:
+                string += '(' +a+ ')'
+            content.append(string)
+    return content
