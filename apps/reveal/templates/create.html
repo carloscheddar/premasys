@@ -2,27 +2,32 @@
 {% load staticfiles %}
 
 {% block slides %}
+<style type="text/css">
+#text {
+   font-size: 20pt;
+   font-family: "League Gothic", Impact, sans-serif;
+}
+</style>
+
 <div ng-controller="Ctrl" class="container">
-	<div class="row">
-		<div class="col-md-6">
-			<textarea id="text" ng-model="slideshow" ng-keyup="update()" class="form-control" rows="10" placeholder="Start your slides!"></textarea>
-			<button type="button" ng-click="slide(counter-1)" class="btn btn-primary">Previous</button>
-			<button type="button" id="show" ng-click="save()" class="btn btn-primary btn-success" >Show</button>
-			<button type="button" ng-click="slide(counter+1)" class="btn btn-primary">Next</button>
-			{% verbatim %}
-				<h3 style="color:white">Slide: {{counter+1}}</h3>
-			{% endverbatim %}
-		</div>
-		<div class="col-md-6">
-			<div class="reveal">
-				<div class="slides" ng-bind-html="value">
-					<!-- This space will be inserted from angular -->
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="row">
+    <div class="col-md-6">
+      <textarea id="text" ng-model="slideshow" ng-keyup="update()" class="form-control" rows="10"></textarea>
+      <button type="button" ng-click="slide(counter-1)" class="btn btn-primary">Previous</button>
+      <button type="button" id="show" ng-click="save()" class="btn btn-primary btn-success" >Show</button>
+      <button type="button" ng-click="slide(counter+1)" class="btn btn-primary">Next</button>
+      {% verbatim %}
+        <h3 style="color:white">Slide: {{counter+1}}</h3>
+      {% endverbatim %}
+    </div>
+    <div class="col-md-6">
+      <div class="reveal" style="height:inherit; width:inherit;">
+        <div class="slides" ng-bind-html="value">
+          <!-- This space will be inserted from angular --> </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <script type="text/javascript" src="{% static "slides/create.js" %}"></script>
-
 {% endblock %}
