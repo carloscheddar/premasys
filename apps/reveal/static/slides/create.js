@@ -95,8 +95,7 @@ var les2json = function(argument) {
 
 // Receive a slide as a json object and return
 // as PList
-function jsonToPList(slide)
-{
+function jsonToPList(slide){
   if (slide["type"] == "question")
   {
     var question = slide["question"];
@@ -104,26 +103,23 @@ function jsonToPList(slide)
                  getQuestionChoices(question),
                  getQuestionAnswers(question)];
   }
-  
-  else if (slide["type"] == "text")
-  {
+
+  else if (slide["type"] == "text"){
     var text = slide["text"];
     var pList = [makeEntry("text",text)];
   }
-  
+  console.log(pList);
   return pList.join("");
 }
 
 // Get the body of the question is PList format
-function getQuestionText(question) 
-{
+function getQuestionText(question){
   var text = question["body"];
   return makeEntry("question",text)
 }
 
 // Get a string that contains all choices as PLists
-function getQuestionChoices(question)
-{
+function getQuestionChoices(question){
   // Get the list of choices that aren't answers
   var choices = question["choices"];
   var answers = question["answers"];
@@ -136,8 +132,7 @@ function getQuestionChoices(question)
 
 // Get a string that contains all the correct answers
 // as PLists
-function getQuestionAnswers(question)
-{
+function getQuestionAnswers(question){
   answers = question["answers"];
   answers = answers.map(
     function(x) { return makeEntry("answer",x); }
@@ -146,7 +141,13 @@ function getQuestionAnswers(question)
 }
 
 // Receive a keyword and content, format to PList entry
-function makeEntry(keyword, content)
-{
+function makeEntry(keyword, content){
   return "(" + keyword + " " + content + ")";
+}
+
+function array2Plist(array){
+  array = [];
+  for (var i = 0; i < array.length; i++) {
+    console.log(jsonToPList(array[i]));
+  };
 }
