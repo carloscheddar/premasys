@@ -53,6 +53,21 @@ def json2html(json):
                 split = a.split(' ',1)
                 string += "<" + split[0] + ">" + split[1] + "</" + split[0] + ">"
             string += '</section>'
+        elif t == "question":
+            arr = regex.findall(text)
+            string += '<section data-state="quiz">'
+            for a in arr:
+                split = a.split(' ',1)
+                if split[0] == "question":
+                    split[0] = 'h3'
+                if split[0] == "choice":
+                    split[0] = 'li'
+                if split[0] == "answer":
+                    split[0] = 'li'
+                    string += "<" + split[0] + " id='answer'>" + split[1] + "</" + split[0] + ">";
+                    continue
+                string += "<" + split[0] + ">" + split[1] + "</" + split[0] + ">"
+            string += '</section>'
     return string
 
 
@@ -64,7 +79,7 @@ def json2Array(json):
     for j in json:
         t = j["type"]
         text = j["text"]
-        if t == "text":
+        if t == "text" or t == "question":
             arr = regex.findall(text)
             string = ''
             for a in arr:
