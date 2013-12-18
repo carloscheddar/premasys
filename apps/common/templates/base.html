@@ -8,136 +8,136 @@
 {% bootstrap_javascript %}
 <html ng-app="reveal">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="">
-  <meta name="author" content="">
-  <link rel="shortcut icon" href="../../assets/ico/favicon.png">
-  <title>{% block title %}{% endblock title %}</title>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <meta name="description" content="">
+ <meta name="author" content="">
+ <link rel="shortcut icon" href="../../assets/ico/favicon.png">
+ <title>{% block title %}{% endblock title %}</title>
 </head>
 
 <body>
-  <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/">Premasys</a>
-      </div>
-      <div class="navbar-collapse collapse">
-        <ul class="nav navbar-nav">
-          <li class="active">
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="{% url 'Create View' %}">Lesson</a>
-          </li>
-          <li>
-            <a href="#">Progress</a>
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              Dropdown <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-            {% if user.id != None %}
-              <li>
-                <a href="{% url 'user_url' user.id %}">Profile</a>
-              </li>
-            {% endif %}
+ <div class="navbar navbar-inverse navbar-fixed-top">
+   <div class="container">
+     <div class="navbar-header">
+       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+       <a class="navbar-brand" href="/">Premasys</a>
+     </div>
+     <div class="navbar-collapse collapse">
+       <ul class="nav navbar-nav">
+         <li class="active">
+           <a href="#">Home</a>
+         </li>
+         <li>
+           <a href="{% url 'Create View' %}">Lesson</a>
+         </li>
+         <li>
+           <a href="#">Progress</a>
+         </li>
+         <li class="dropdown">
+           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+             Dropdown <b class="caret"></b>
+           </a>
+           <ul class="dropdown-menu">
+           {% if user.id != None %}
+             <li>
+               <a href="{% url 'user_url' user.id %}">Profile</a>
+             </li>
+           {% endif %}
 
-              <li>
-                <a href="#about">About</a>
-              </li>
-              <li>
-                <a href="#contact">Contact</a>
-              </li>
-              <li class="divider"></li>
-              <li class="dropdown-header">Support</li>
-              <li>
-                <a href="#">Report an error</a>
-              </li>
-              <li>
-                <a href="#">FAQ's</a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        {% if request.user.is_authenticated %}
-        <a href="{% url 'auth_logout' %}" class="navbar-form navbar-right">
-          <button type="button" class="btn btn-danger">Logout</button>
-        </a>
-        {% else %}
-        <a href="{% url 'auth_login' %}" class="navbar-form navbar-right">
-          <button type="submit" value="login" class="btn btn-success">Login</button>
-        </a>
-        {% endif %}
-      </div>
-      <!--/.navbar-collapse --> </div>
-  </div>
+             <li>
+               <a href="#about">About</a>
+             </li>
+             <li>
+               <a href="#contact">Contact</a>
+             </li>
+             <li class="divider"></li>
+             <li class="dropdown-header">Support</li>
+             <li>
+               <a href="#">Report an error</a>
+             </li>
+             <li>
+               <a href="#">FAQ's</a>
+             </li>
+           </ul>
+         </li>
+       </ul>
+       {% if request.user.is_authenticated %}
+       <a href="{% url 'auth_logout' %}" class="navbar-form navbar-right">
+         <button type="button" class="btn btn-danger">Logout</button>
+       </a>
+       {% else %}
+       <a href="{% url 'auth_login' %}" class="navbar-form navbar-right">
+         <button type="submit" value="login" class="btn btn-success">Login</button>
+       </a>
+       {% endif %}
+     </div>
+     <!--/.navbar-collapse --> </div>
+ </div>
 
-  <!-- If not root only output header and footer -->
-  {% if request.path != "/" %}
-  <hr>
-  <!-- Placeholder for the other templates -->
-  {% block content %}{% endblock %}
+ <!-- If not root only output header and footer -->
+ {% if request.path != "/" %}
+ <hr>
+ <!-- Placeholder for the other templates -->
+ {% block content %}{% endblock %}
 
-      {% else %}
-  <div class="jumbotron">
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="container">
-      <h1>Premasys, Djoodle or WE?</h1>
-      <p>
-        We let you create lessons for your Course Management System for a course.
-      </p>
+     {% else %}
+ <div class="jumbotron">
+   <!-- Main jumbotron for a primary marketing message or call to action -->
+   <div class="container">
+     <h1>Premasys, Djoodle or WE?</h1>
+     <p>
+       Premasys is (not a form of cancer, but) a system for making lessons and quizzes for your online courses. With seamless* integration with moodle, you can manage and monitor your students' progress and performance in individual lessons right from your favorite open-source course management system (but only if moodle is your favorite). Our lessons intersperse questions and content, allowing for a dynamic learning experience that can be used to challenge and engage students, but only if you want; our philosophy is to let you teach like you want, and we'll worry about getting your lessons up and running. Premasys (still not a form of cancer, we double-checked) is still under development, please contact our development team with your suggestions below.
+     </p>
 
-      <p>
-        <a class="btn btn-primary btn-lg">Learn more &raquo;</a>
-      </p>
-    </div>
-  </div>
-  <div class="container">
-    <!-- Example row of columns -->
-    <div class="row">
-      <div class="col-lg-4">
-        <h2>Heading</h2>
-        <p>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        </p>
-        <p>
-          <a class="btn btn-default" href="#">View details &raquo;</a>
-        </p>
-      </div>
-      <div class="col-lg-4">
-        <h2>Heading</h2>
-        <p>
-          Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-        </p>
-        <p>
-          <a class="btn btn-default" href="#">View details &raquo;</a>
-        </p>
-      </div>
-      <div class="col-lg-4">
-        <h2>Heading</h2>
-        <p>
-          Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
-        </p>
-        <p>
-          <a class="btn btn-default" href="#">View details &raquo;</a>
-        </p>
-      </div>
-    </div>
-  </div>
-  <!-- /container -->
-  {% endif %}
-  <hr>
-  <div class="container">
-    <footer>
-      <p>&copy; Company 2013</p>
-    </footer>
-  </div>
+     <p>
+       <a class="btn btn-primary btn-lg">Learn more &raquo;</a>
+     </p>
+   </div>
+ </div>
+ <div class="container">
+   <!-- Example row of columns -->
+   <div class="row">
+     <div class="col-lg-4">
+       <h2>Heading</h2>
+       <p>
+         Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+       </p>
+       <p>
+         <a class="btn btn-default" href="#">View details &raquo;</a>
+       </p>
+     </div>
+     <div class="col-lg-4">
+       <h2>Heading</h2>
+       <p>
+         Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
+       </p>
+       <p>
+         <a class="btn btn-default" href="#">View details &raquo;</a>
+       </p>
+     </div>
+     <div class="col-lg-4">
+       <h2>Heading</h2>
+       <p>
+         Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.
+       </p>
+       <p>
+         <a class="btn btn-default" href="#">View details &raquo;</a>
+       </p>
+     </div>
+   </div>
+ </div>
+ <!-- /container -->
+ {% endif %}
+ <hr>
+ <div class="container">
+   <footer>
+     <p>&copy; Company 2013</p>
+   </footer>
+ </div>
 </body>
 </html>
